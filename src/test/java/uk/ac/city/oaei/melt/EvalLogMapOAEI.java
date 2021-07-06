@@ -1,3 +1,4 @@
+package uk.ac.city.oaei.melt;
 import de.uni_mannheim.informatik.dws.melt.matching_base.external.docker.MatcherDockerFile;
 import de.uni_mannheim.informatik.dws.melt.matching_data.TrackRepository;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.ExecutionResultSet;
@@ -9,20 +10,17 @@ import uk.ac.city.logmap.melt.LogMap_MELT;
 
 import java.io.File;
 
-//import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-//import org.apache.log4j.Logger;
 
 
-public class TestOAEI {
+public class EvalLogMapOAEI {
     
-	private static final Logger LOGGER = LoggerFactory.getLogger(TestOAEI.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EvalLogMapOAEI.class);
 	
 		
     public static void main(String[] args) throws Exception {
     
-    	//Logger.getRootLogger().setLevel(Level.ALL);    	
     	    	
     	File dockerFile;
     	
@@ -30,21 +28,13 @@ public class TestOAEI {
         //dockerFile = new File("/home/ernesto/Documents/OAEI2021/evaluation/simplewebmatcher-1.0-web-latest.tar.gz");
         
         
-        MatcherDockerFile dockerMatcher;
-        
-          
+        MatcherDockerFile dockerMatcher;                  
         dockerMatcher = new MatcherDockerFile("logmap-melt-oaei-2021-web:latest", dockerFile);//
         //dockerMatcher = new MatcherDockerFile("simplewebmatcher-1.0-web:latest", dockerFile);//
         
-        //
-        LOGGER.info(MatcherDockerFile.getImageNameFromFile(dockerFile));
-        //MatcherDockerFile.getImageNameFromFile(dockerFile)
-        
-        
+        //LOGGER.info(MatcherDockerFile.getImageNameFromFile(dockerFile));
         dockerMatcher.logAllLinesFromContainer();
         
-        
-
         // running the matcher on any task
         ExecutionResultSet ers = Executor.run(TrackRepository.Anatomy.Default.getFirstTestCase(), dockerMatcher);
         //ExecutionResultSet ers = Executor.run(TrackRepository.Conference.V1.getFirstTestCase(), dockerMatcher);
@@ -56,25 +46,21 @@ public class TestOAEI {
         
         
         
-        
-        
-        
         // evaluating our system
         EvaluatorCSV evaluatorCSV = new EvaluatorCSV(ers);
-     // evaluating our system
-        EvaluatorBasic evaluatorBasic = new EvaluatorBasic(ers);
-        
+        EvaluatorBasic evaluatorBasic = new EvaluatorBasic(ers);        
         EvaluatorCopyResults evalCopy = new EvaluatorCopyResults(ers);
 
         // we should close the docker matcher so that docker cab shut down the container
-        //dockerMatcher.close();
+        //Leave it open for debugging purposes to access the logs: docker container logs {id_container}
+        //dockerMatcher.close();  
+        
 
         // writing evaluation results to disk
         evaluatorCSV.writeToDirectory("/home/ernesto/Documents/OAEI2021/evaluation/results/");
         evaluatorBasic.writeToDirectory("/home/ernesto/Documents/OAEI2021/evaluation/results/");
         evalCopy.writeToDirectory("/home/ernesto/Documents/OAEI2021/evaluation/results/");
-
-        evalCopy.writeResultsToDirectory(new File("/home/ernesto/Documents/OAEI2021/evaluation/results/"));
+        //evalCopy.writeResultsToDirectory(new File("/home/ernesto/Documents/OAEI2021/evaluation/results/"));
 
     }
 }
