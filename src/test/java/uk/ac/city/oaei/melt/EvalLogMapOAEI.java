@@ -54,7 +54,7 @@ public class EvalLogMapOAEI {
         
         //TODO
         // we should close the docker matcher so that docker cab shut down the container
-        //Leave it open for debugging purposes to access the logs: docker container logs {id_container}
+        //Leave it open for debugging purposes to access the logs: "docker container logs {id_container}"
         //dockerMatcher.close();  
         
 
