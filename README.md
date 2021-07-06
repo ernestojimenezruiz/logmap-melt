@@ -13,6 +13,7 @@ This maven project contains the interface (extending `MatcherURL`) used by [LogM
 - Clone this repository
 - Execute `mvn clean install` (you may need root privileges)
 - This will generate a docker image (e.g., `logmap-melt-oaei-2021-web-latest.tar.gz`) that you can use with the [MELT client](https://dwslab.github.io/melt/matcher-evaluation/client) or from [Java](https://dwslab.github.io/melt/matcher-packaging/web#evaluate-and-re-use-a-web-interface-matcher-in-melt). An example is also given [here](https://github.com/ernestojimenezruiz/logmap-melt/tree/main/src/test/java/uk/ac/city/oaei/melt).
+- Logs stored in file `logmap-log.out` see [log4j.properties file](https://github.com/ernestojimenezruiz/logmap-melt/blob/main/src/main/resources/log4j.properties).
 
 
 
