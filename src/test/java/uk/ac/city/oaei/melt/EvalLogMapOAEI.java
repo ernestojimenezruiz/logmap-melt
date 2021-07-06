@@ -51,6 +51,8 @@ public class EvalLogMapOAEI {
         EvaluatorBasic evaluatorBasic = new EvaluatorBasic(ers);        
         EvaluatorCopyResults evalCopy = new EvaluatorCopyResults(ers);
 
+        
+        //TODO
         // we should close the docker matcher so that docker cab shut down the container
         //Leave it open for debugging purposes to access the logs: docker container logs {id_container}
         //dockerMatcher.close();  
