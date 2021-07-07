@@ -2,8 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>uk.ac.city</groupId>
   <!-- Select one -->
-  <artifactId>logmap-melt</artifactId> <!--  Extends MatcherURL -->
-  <!--artifactId>logmap-melt-owlapi</artifactId--> <!-- Extends -MatcherYAAAOwlApi -->
+  <!--artifactId>logmap-melt</artifactId--> <!--  Extends MatcherURL -->
+  <artifactId>logmap-melt-owlapi</artifactId> <!-- Extends -MatcherYAAAOwlApi -->
   <version>oaei-2021</version>
   <packaging>jar</packaging>
   <description>LogMap matcher with melt packaging (OAEI 2021).</description>
@@ -15,8 +15,8 @@
         
         <!-- mandatory: this class has to implement IOntologyMatchingToolBridge or subclasses-->
         <!-- Select one -->
-        <oaei.mainClass>uk.ac.city.logmap.melt.LogMap_MELT</oaei.mainClass>  <!--  Extends MatcherURL -->
-        <!--oaei.mainClass>uk.ac.city.logmap.melt.LogMap_MELT_OWLAPI</oaei.mainClass-->  <!-- Extends -MatcherYAAAOwlApi -->
+        <!--oaei.mainClass>uk.ac.city.logmap.melt.LogMap_MELT</oaei.mainClass-->  <!--  Extends MatcherURL -->
+        <oaei.mainClass>uk.ac.city.logmap.melt.LogMap_MELT_OWLAPI</oaei.mainClass>  <!-- Extends -MatcherYAAAOwlApi -->
         
         <maven.deploy.skip>true</maven.deploy.skip><!-- needed to call mvn deploy without having a distributionManagement -->
         <!-- <matching.version>3.0</matching.version>-->
