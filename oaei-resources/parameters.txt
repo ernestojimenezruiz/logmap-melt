@@ -39,17 +39,17 @@ allow_bioportal|false
 #Number of mediating ontologies to use from BioPortal
 max_mediating_ontologies|10
 allow_interactivity|false
-allow_multilingual|false
-#false for tests
+allow_multilingual|true
+#true for tests
 is_test_mode_multilingual|false
-use_local_dict|false
+use_local_dict|true
 call_online_translator|false
-path_chinese_segmenter_dict|multilingual/dict_ictclas4j
+path_chinese_segmenter_dict|oaei-resources/multilingual/dict_ictclas4j
 #on-the-fly dictionaries if translation is not available in local dict or if local dict is not allowed
-path_multilingual_tmp|multilingual
+path_multilingual_tmp|oaei-resources/multilingual
 #path_multilingual_tmp|/home/ernesto/Documents/OAEI_OM_2015/EVAL_2015/dict_multilingual
 #Local precompued disctionary if use_local_dict=true
-path_multilingual_local|multilingual/local
+path_multilingual_local|oaei-resources/multilingual/local
 target_lang|en
 #0=Google, 1=Microsoft, >=2 -> all
 translator_id|9

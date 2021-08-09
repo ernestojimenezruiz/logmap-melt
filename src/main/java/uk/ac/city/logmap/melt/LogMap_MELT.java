@@ -36,8 +36,7 @@ public class LogMap_MELT extends MatcherURL {
 			
 			LogMap2_Matcher logmap = new LogMap2_Matcher(source.toURI().toString(), target.toURI().toString(), "oaei-resources/");
 			
-			LOGGER.info("Matching with LogMap completed");
-			
+			LOGGER.info("Matching with LogMap completed");			
 			
 			OAEIAlignmentOutput alignment_output = new OAEIAlignmentOutput("alignment", logmap.getIRIOntology1(), logmap.getIRIOntology2());
 			

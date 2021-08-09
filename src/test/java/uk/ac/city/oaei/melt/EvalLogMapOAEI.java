@@ -6,6 +6,8 @@ import de.uni_mannheim.informatik.dws.melt.matching_eval.Executor;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.evaluator.EvaluatorCSV;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.evaluator.EvaluatorBasic;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.evaluator.EvaluatorCopyResults;
+import uk.ac.city.logmap.melt.LogMapBio_MELT;
+import uk.ac.city.logmap.melt.LogMapLite_MELT;
 import uk.ac.city.logmap.melt.LogMap_MELT;
 
 import java.io.File;
@@ -29,15 +31,21 @@ public class EvalLogMapOAEI {
     	
     	
     	System system;
-    	system = System.MactherOWLAPI;
-    	//system = System.MatcherURL;
+    	//system = System.MactherOWLAPI;
+    	system = System.MatcherURL;
     	//system = System.SimpleJena;
+    	system = System.NODocker;
     	
     	if (system == System.NODocker) { //Local MELT system or built-in MELT matchers
     		
-    		LogMap_MELT matcher = new LogMap_MELT();
+    		//LogMap_MELT matcher = new LogMap_MELT();
+    		LogMapLite_MELT matcher = new LogMapLite_MELT();
+    		
+    		//LogMapBio_MELT matcher = new LogMapBio_MELT();
+    		
             //ers = Executor.run(TrackRepository.Conference.V1.getFirstTestCase(), matcher);
             ers = Executor.run(TrackRepository.Anatomy.Default.getTestCases(), matcher);
+    		//ers = Executor.run(TrackRepository.Multifarm.getSpecificMultifarmTrack("en-es"), matcher);
             
     	}
     	else {
@@ -59,8 +67,8 @@ public class EvalLogMapOAEI {
 	        
 	        // running the matcher on any task
 	        //ers = Executor.run(TrackRepository.Anatomy.Default.getFirstTestCase(), dockerMatcher);
-	        ers = Executor.run(TrackRepository.Conference.V1.getTestCases(), dockerMatcher);
-	        
+	        //ers = Executor.run(TrackRepository.Conference.V1.getTestCases(), dockerMatcher);
+	        ers = Executor.run(TrackRepository.Multifarm.getSpecificMultifarmTrack("en-es"), dockerMatcher);
 	        
 	        //TODO
 	        // we should close the docker matcher so that docker cab shut down the container
