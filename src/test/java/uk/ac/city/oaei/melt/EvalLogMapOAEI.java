@@ -20,7 +20,7 @@ public class EvalLogMapOAEI {
     
 	private static final Logger LOGGER = LoggerFactory.getLogger(EvalLogMapOAEI.class);
 	
-	private static enum System {MatcherURL, MactherOWLAPI, SimpleJena, NODocker};
+	private static enum System {LogMapURL, LogMapBioURL, LogMapLtURL, MactherOWLAPI, SimpleJena, NODocker};
 		
     public static void main(String[] args) throws Exception {
     
@@ -32,9 +32,11 @@ public class EvalLogMapOAEI {
     	
     	System system;
     	//system = System.MactherOWLAPI;
-    	system = System.MatcherURL;
+    	system = System.LogMapURL;
+    	system = System.LogMapBioURL;
+    	//system = System.LogMapLtURL;
     	//system = System.SimpleJena;
-    	system = System.NODocker;
+    	//system = System.NODocker;
     	
     	if (system == System.NODocker) { //Local MELT system or built-in MELT matchers
     		
@@ -53,10 +55,19 @@ public class EvalLogMapOAEI {
 		        dockerFile = new File("/home/ernesto/Documents/OAEI2021/evaluation/logmap-melt-owlapi-oaei-2021-web-latest.tar.gz");
 		        dockerMatcher = new MatcherDockerFile("logmap-melt-owlapi-oaei-2021-web:latest", dockerFile);//
 	    	}
-	    	else if (system == System.MatcherURL) {
+	    	else if (system == System.LogMapURL) {
 		        dockerFile = new File("/home/ernesto/Documents/OAEI2021/evaluation/logmap-melt-oaei-2021-web-latest.tar.gz");
 		        dockerMatcher = new MatcherDockerFile("logmap-melt-oaei-2021-web:latest", dockerFile);//
 	    	}
+	    	else if (system == System.LogMapBioURL) {
+		        dockerFile = new File("/home/ernesto/Documents/OAEI2021/evaluation/logmap-bio-melt-oaei-2021-web-latest.tar.gz");
+		        dockerMatcher = new MatcherDockerFile("logmap-bio-melt-oaei-2021-web:latest", dockerFile);//
+	    	}
+	    	else if (system == System.LogMapLtURL) {
+		        dockerFile = new File("/home/ernesto/Documents/OAEI2021/evaluation/logmap-lite-melt-oaei-2021-web-latest.tar.gz");
+		        dockerMatcher = new MatcherDockerFile("logmap-lite-melt-oaei-2021-web:latest", dockerFile);//
+	    	}
+	    	
 	    	else {// if (system == System.SimpleJena) {
 	    		dockerFile = new File("/home/ernesto/Documents/OAEI2021/evaluation/simplewebmatcher-1.0-web-latest.tar.gz");
 	    		dockerMatcher = new MatcherDockerFile("simplewebmatcher-1.0-web:latest", dockerFile);//
@@ -66,9 +77,9 @@ public class EvalLogMapOAEI {
 	        dockerMatcher.logAllLinesFromContainer();
 	        
 	        // running the matcher on any task
-	        //ers = Executor.run(TrackRepository.Anatomy.Default.getFirstTestCase(), dockerMatcher);
+	        ers = Executor.run(TrackRepository.Anatomy.Default.getFirstTestCase(), dockerMatcher);
 	        //ers = Executor.run(TrackRepository.Conference.V1.getTestCases(), dockerMatcher);
-	        ers = Executor.run(TrackRepository.Multifarm.getSpecificMultifarmTrack("en-es"), dockerMatcher);
+	        //ers = Executor.run(TrackRepository.Multifarm.getSpecificMultifarmTrack("en-es"), dockerMatcher);
 	        
 	        //TODO
 	        // we should close the docker matcher so that docker cab shut down the container
